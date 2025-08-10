@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Countdown from './components/Countdown';
 import RSVP from './components/RSVP';
 import Events from './components/Events';
-// import Features from './components/Features';
+import Features from './components/Features';
 import Intro from './components/Intro';
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
         <Countdown weddingDate={weddingDate} visible={elementsVisible['countdown']} />
         <Events visible={elementsVisible['events']} />
         <Travel visible={elementsVisible['travel']} />
-        {/* <Features visible={elementsVisible['features']} /> */}
+        <Features visible={elementsVisible['features']} />
         <RSVP visible={elementsVisible['rsvp']} />
       </main>
       <Footer />

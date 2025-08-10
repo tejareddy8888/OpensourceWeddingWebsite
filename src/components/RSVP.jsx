@@ -8,11 +8,9 @@ const RSVP = ({ visible }) => {
     numberOfPeople: '',
     arrivalDate: '',
     arrivalTime: '',
-    arrivalTimeAmPm: 'AM',
     stayAtDerasNatureCamp: '',
     departureDate: '',
     departureTime: '',
-    departureTimeAmPm: 'AM',
     needTransfer: '',
     comments: ''
   });
@@ -31,7 +29,6 @@ const RSVP = ({ visible }) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -67,19 +64,37 @@ const RSVP = ({ visible }) => {
 
     // Optional fields - only append if they have values
     appendIfNotEmpty('entry.804560134', formData.numberOfPeople);
-    appendIfNotEmpty('entry.1424661284', formData.arrivalDate);
 
-    // Handle time fields - only append if both time and date are provided
-    if (formData.arrivalTime && formData.arrivalTime.trim() !== '') {
-      formSubmitData.append('entry.647675901', `${formData.arrivalTime} ${formData.arrivalTimeAmPm}`);
+    // Handle arrival date
+    if (formData.arrivalDate) {
+      const [year, month, day] = formData.arrivalDate.split('-'); // Assuming YYYY-MM-DD format
+      appendIfNotEmpty('entry.1424661284_year', year);
+      appendIfNotEmpty('entry.1424661284_month', month);
+      appendIfNotEmpty('entry.1424661284_day', day);
+    }
+
+    // Handle arrival time
+    if (formData.arrivalTime) {
+      const [hours, minutes] = formData.arrivalTime.split(':');
+      appendIfNotEmpty('entry.647675901_hour', hours);
+      appendIfNotEmpty('entry.647675901_minute', minutes);
     }
 
     appendIfNotEmpty('entry.1750924207', formData.stayAtDerasNatureCamp);
-    appendIfNotEmpty('entry.1386550255', formData.departureDate);
 
-    // Handle departure time - only append if both time and date are provided
-    if (formData.departureTime && formData.departureTime.trim() !== '') {
-      formSubmitData.append('entry.1136018907', `${formData.departureTime} ${formData.departureTimeAmPm}`);
+    // Handle departure date
+    if (formData.departureDate) {
+      const [year, month, day] = formData.departureDate.split('-'); // Assuming YYYY-MM-DD format
+      appendIfNotEmpty('entry.1386550255_year', year);
+      appendIfNotEmpty('entry.1386550255_month', month);
+      appendIfNotEmpty('entry.1386550255_day', day);
+    }
+
+    // Handle departure time
+    if (formData.departureTime) {
+      const [hours, minutes] = formData.departureTime.split(':');
+      appendIfNotEmpty('entry.1136018907_hour', hours);
+      appendIfNotEmpty('entry.1136018907_minute', minutes);
     }
 
     appendIfNotEmpty('entry.486253220', formData.needTransfer);
@@ -93,17 +108,16 @@ const RSVP = ({ visible }) => {
       });
 
       setSubmitSuccess(true);
+
       setFormData({
         canAttend: '',
         familyName: '',
         numberOfPeople: '',
         arrivalDate: '',
         arrivalTime: '',
-        arrivalTimeAmPm: 'AM',
         stayAtDerasNatureCamp: '',
         departureDate: '',
         departureTime: '',
-        departureTimeAmPm: 'AM',
         needTransfer: '',
         comments: ''
       });
@@ -150,8 +164,8 @@ const RSVP = ({ visible }) => {
                       <input
                         type="radio"
                         name="canAttend"
-                        value="Yes, I'll be there"
-                        checked={formData.canAttend === "Yes, I'll be there"}
+                        value="Yes,  I'll be there"
+                        checked={formData.canAttend === "Yes,  I'll be there"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
                       />
@@ -221,6 +235,8 @@ const RSVP = ({ visible }) => {
                       name="arrivalDate"
                       value={formData.arrivalDate}
                       onChange={handleChange}
+                      min="2025-11-20"
+                      max="2025-11-26"
                       className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
@@ -229,7 +245,7 @@ const RSVP = ({ visible }) => {
                 {/* Time of Arrival */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-3 text-base font-medium text-gray-700">
-                    Time of Arrival <span className="text-gray-400 text-sm">(Optional)</span>
+                    Time of Arrival  <span className="text-gray-400 text-sm">(Optional) (24 Hour Format)</span>
                   </label>
                   <div className="flex items-center space-x-2">
                     <input
@@ -239,15 +255,6 @@ const RSVP = ({ visible }) => {
                       onChange={handleChange}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
-                    <select
-                      name="arrivalTimeAmPm"
-                      value={formData.arrivalTimeAmPm}
-                      onChange={handleChange}
-                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    >
-                      <option value="AM">AM</option>
-                      <option value="PM">PM</option>
-                    </select>
                   </div>
                 </div>
 
@@ -294,6 +301,8 @@ const RSVP = ({ visible }) => {
                       name="departureDate"
                       value={formData.departureDate}
                       onChange={handleChange}
+                      min="2025-11-26"
+                      max="2025-11-30"
                       className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
                   </div>
@@ -302,7 +311,7 @@ const RSVP = ({ visible }) => {
                 {/* Time of Departure */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-3 text-base font-medium text-gray-700">
-                    Time of Departure <span className="text-gray-400 text-sm">(Optional)</span>
+                    Time of Departure <span className="text-gray-400 text-sm">(Optional) (24 Hour Format)</span>
                   </label>
                   <div className="flex items-center space-x-2">
                     <input
@@ -312,15 +321,6 @@ const RSVP = ({ visible }) => {
                       onChange={handleChange}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     />
-                    <select
-                      name="departureTimeAmPm"
-                      value={formData.departureTimeAmPm}
-                      onChange={handleChange}
-                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    >
-                      <option value="AM">AM</option>
-                      <option value="PM">PM</option>
-                    </select>
                   </div>
                 </div>
 

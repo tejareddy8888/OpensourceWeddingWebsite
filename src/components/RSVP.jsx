@@ -37,20 +37,53 @@ const RSVP = ({ visible }) => {
     setIsSubmitting(true);
     setSubmitError(null);
 
+    // Validate required fields
+    if (!formData.canAttend.trim()) {
+      setSubmitError('Please select whether you can attend.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.familyName.trim()) {
+      setSubmitError('Please enter your family name.');
+      setIsSubmitting(false);
+      return;
+    }
+
     const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdn8w60gHDFizcrcKmwWwjsN9HmeXL3sYAMot_HbtUsWNlpVg/formResponse';
 
     const formSubmitData = new FormData();
 
+    // Helper function to append only non-empty values
+    const appendIfNotEmpty = (entryId, value) => {
+      if (value && value.trim() !== '') {
+        formSubmitData.append(entryId, value);
+      }
+    };
+
+    // Required fields - always append
     formSubmitData.append('entry.877086558', formData.canAttend);
     formSubmitData.append('entry.1498135098', formData.familyName);
-    formSubmitData.append('entry.804560134', formData.numberOfPeople);
-    formSubmitData.append('entry.1424661284', formData.arrivalDate);
-    formSubmitData.append('entry.647675901', `${formData.arrivalTime} ${formData.arrivalTimeAmPm}`);
-    formSubmitData.append('entry.1750924207', formData.stayAtDerasNatureCamp);
-    formSubmitData.append('entry.1386550255', formData.departureDate);
-    formSubmitData.append('entry.1136018907', `${formData.departureTime} ${formData.departureTimeAmPm}`);
-    formSubmitData.append('entry.486253220', formData.needTransfer);
-    formSubmitData.append('entry.583435899', formData.comments);
+
+    // Optional fields - only append if they have values
+    appendIfNotEmpty('entry.804560134', formData.numberOfPeople);
+    appendIfNotEmpty('entry.1424661284', formData.arrivalDate);
+
+    // Handle time fields - only append if both time and date are provided
+    if (formData.arrivalTime && formData.arrivalTime.trim() !== '') {
+      formSubmitData.append('entry.647675901', `${formData.arrivalTime} ${formData.arrivalTimeAmPm}`);
+    }
+
+    appendIfNotEmpty('entry.1750924207', formData.stayAtDerasNatureCamp);
+    appendIfNotEmpty('entry.1386550255', formData.departureDate);
+
+    // Handle departure time - only append if both time and date are provided
+    if (formData.departureTime && formData.departureTime.trim() !== '') {
+      formSubmitData.append('entry.1136018907', `${formData.departureTime} ${formData.departureTimeAmPm}`);
+    }
+
+    appendIfNotEmpty('entry.486253220', formData.needTransfer);
+    appendIfNotEmpty('entry.583435899', formData.comments);
 
     try {
       const response = await fetch(googleFormUrl, {
@@ -121,7 +154,6 @@ const RSVP = ({ visible }) => {
                         checked={formData.canAttend === "Yes, I'll be there"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
-                        required
                       />
                       <span className="text-gray-700">Yes, I'll be there</span>
                     </label>
@@ -133,7 +165,6 @@ const RSVP = ({ visible }) => {
                         checked={formData.canAttend === "Sorry, can't make it"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
-                        required
                       />
                       <span className="text-gray-700">Sorry, can't make it</span>
                     </label>
@@ -142,7 +173,9 @@ const RSVP = ({ visible }) => {
 
                 {/* Family Name */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label htmlFor="familyName" className="block mb-3 text-base font-medium text-gray-700">Family Name</label>
+                  <label htmlFor="familyName" className="block mb-3 text-base font-medium text-gray-700">
+                    Family Name <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="familyName"
@@ -151,13 +184,14 @@ const RSVP = ({ visible }) => {
                     onChange={handleChange}
                     className="w-full px-0 py-2 border-0 border-b-2 border-gray-200 focus:border-primary focus:ring-0 bg-transparent text-gray-700 placeholder-gray-400"
                     placeholder="Your answer"
-                    required
                   />
                 </div>
 
                 {/* How many people joining? */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label className="block mb-4 text-base font-medium text-gray-700">How many people joining?</label>
+                  <label className="block mb-4 text-base font-medium text-gray-700">
+                    How many people joining? <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="flex flex-wrap gap-4 sm:gap-8 justify-center sm:justify-between">
                     {[1, 2, 3, 4, 5].map(num => (
                       <label key={num} className="flex flex-col items-center cursor-pointer">
@@ -177,7 +211,9 @@ const RSVP = ({ visible }) => {
 
                 {/* Date of Arrival */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label htmlFor="arrivalDate" className="block mb-3 text-base font-medium text-gray-700">Date of Arrival</label>
+                  <label htmlFor="arrivalDate" className="block mb-3 text-base font-medium text-gray-700">
+                    Date of Arrival <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="flex space-x-2 text-sm">
                     <input
                       type="date"
@@ -192,7 +228,9 @@ const RSVP = ({ visible }) => {
 
                 {/* Time of Arrival */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label className="block mb-3 text-base font-medium text-gray-700">Time of Arrival</label>
+                  <label className="block mb-3 text-base font-medium text-gray-700">
+                    Time of Arrival <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="flex items-center space-x-2">
                     <input
                       type="time"
@@ -215,7 +253,9 @@ const RSVP = ({ visible }) => {
 
                 {/* Are you willing to stay at Deras Nature Camp */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label className="block mb-4 text-base font-medium text-gray-700">Are you willing to stay at Deras Nature Camp</label>
+                  <label className="block mb-4 text-base font-medium text-gray-700">
+                    Are you willing to stay at Deras Nature Camp? <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="space-y-3">
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -244,7 +284,9 @@ const RSVP = ({ visible }) => {
 
                 {/* Date of Departure */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label htmlFor="departureDate" className="block mb-3 text-base font-medium text-gray-700">Date of Departure</label>
+                  <label htmlFor="departureDate" className="block mb-3 text-base font-medium text-gray-700">
+                    Date of Departure <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="flex space-x-2 text-sm">
                     <input
                       type="date"
@@ -259,7 +301,9 @@ const RSVP = ({ visible }) => {
 
                 {/* Time of Departure */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label className="block mb-3 text-base font-medium text-gray-700">Time of Departure</label>
+                  <label className="block mb-3 text-base font-medium text-gray-700">
+                    Time of Departure <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="flex items-center space-x-2">
                     <input
                       type="time"
@@ -280,92 +324,74 @@ const RSVP = ({ visible }) => {
                   </div>
                 </div>
 
-                {/* Would you like us to transfer? */}
+                {/* Do you need transfer? */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label className="block mb-4 text-base font-medium text-gray-700">Would you like us to transfer?</label>
+                  <label className="block mb-4 text-base font-medium text-gray-700">
+                    Do you need transfer? <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <div className="space-y-3">
                     <label className="flex items-center cursor-pointer">
                       <input
                         type="radio"
                         name="needTransfer"
-                        value="yes"
-                        checked={formData.needTransfer === "yes"}
+                        value="Yes"
+                        checked={formData.needTransfer === "Yes"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
                       />
-                      <span className="text-gray-700">yes</span>
+                      <span className="text-gray-700">Yes</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
                         type="radio"
                         name="needTransfer"
-                        value="no"
-                        checked={formData.needTransfer === "no"}
+                        value="No"
+                        checked={formData.needTransfer === "No"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
                       />
-                      <span className="text-gray-700">no</span>
+                      <span className="text-gray-700">No</span>
                     </label>
                   </div>
                 </div>
 
                 {/* Comments */}
                 <div className="border-b border-gray-200 pb-6">
-                  <label htmlFor="comments" className="block mb-3 text-base font-medium text-gray-700">Comments</label>
+                  <label htmlFor="comments" className="block mb-3 text-base font-medium text-gray-700">
+                    Any comments or special requests? <span className="text-gray-400 text-sm">(Optional)</span>
+                  </label>
                   <textarea
                     id="comments"
                     name="comments"
                     value={formData.comments}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-0 py-2 border-0 border-b-2 border-gray-200 focus:border-primary focus:ring-0 bg-transparent text-gray-700 placeholder-gray-400 resize-none"
-                    placeholder="Your answer"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
+                    placeholder="Let us know if you have any dietary restrictions, accessibility needs, or other special requests..."
                   />
                 </div>
 
                 {/* Error Message */}
                 {submitError && (
-                  <div className="bg-red-50 border border-red-200 rounded-md p-4">
-                    <p className="text-red-600 text-sm">{submitError}</p>
+                  <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
+                    <div className="flex">
+                      <svg className="w-5 h-5 text-red-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-red-700 text-sm">{submitError}</p>
+                    </div>
                   </div>
                 )}
 
                 {/* Submit Button */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <div className="text-center">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 bg-primary text-white py-3 px-6 rounded-md font-medium hover:bg-primary-dark transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn btn-primary px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                    {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => setFormData({
-                      canAttend: '',
-                      familyName: '',
-                      numberOfPeople: '',
-                      arrivalDate: '',
-                      arrivalTime: '',
-                      arrivalTimeAmPm: 'AM',
-                      stayAtDerasNatureCamp: '',
-                      departureDate: '',
-                      departureTime: '',
-                      departureTimeAmPm: 'AM',
-                      needTransfer: '',
-                      comments: ''
-                    })}
-                    className="flex-1 sm:flex-none bg-gray-100 text-gray-700 py-3 px-6 rounded-md font-medium hover:bg-gray-200 transition-colors duration-300"
-                  >
-                    Clear form
-                  </button>
-                </div>
-
-                {/* Form Footer */}
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-xs text-gray-500 text-center">
-                    Never submit passwords through Google Forms.
-                  </p>
                 </div>
               </form>
             </>

@@ -334,8 +334,8 @@ const RSVP = ({ visible }) => {
                       <input
                         type="radio"
                         name="needTransfer"
-                        value="Yes"
-                        checked={formData.needTransfer === "Yes"}
+                        value="yes"
+                        checked={formData.needTransfer === "yes"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
                       />
@@ -345,8 +345,8 @@ const RSVP = ({ visible }) => {
                       <input
                         type="radio"
                         name="needTransfer"
-                        value="No"
-                        checked={formData.needTransfer === "No"}
+                        value="no"
+                        checked={formData.needTransfer === "no"}
                         onChange={handleChange}
                         className="mr-3 h-4 w-4 text-primary focus:ring-primary border-gray-300"
                       />

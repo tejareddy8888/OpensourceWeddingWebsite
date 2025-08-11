@@ -15,25 +15,29 @@ const Features = ({ visible }) => {
       title: 'Day 1 - Mil Jhul (Meet & Greet)',
       decorDetails: 'It has a very casual setting in a lawn.',
       dressCodeDetails: 'Anything fun, mix n match, indowestern, relaxed vibe',
-      colors: 'bg-gradient-to-br from-green-100 to-green-200 text-green-900 border-green-300'
+      colors: 'bg-gradient-to-br from-green-100 to-green-200 text-green-900 border-green-300',
+      suggestedColors: ['Green'] // Added suggested colors
     },
     {
       title: 'Day 2 - Sangeet (Evening)',
       decorDetails: 'Cocktail evening with music and dance performances.',
       dressCodeDetails: 'Semi-formal, cocktail attire, sparkly, shimmery or blingy, bright colors, traditional or western',
-      colors: 'bg-gradient-to-br from-purple-100 to-purple-200 text-purple-900 border-purple-300'
+      colors: 'bg-gradient-to-br from-purple-100 to-purple-200 text-purple-900 border-purple-300',
+      suggestedColors: ['Black', 'Maroon', 'Silver'] // Added suggested colors
     },
     {
       title: 'Day 3 - Wedding Ceremony',
       decorDetails: 'Traditional bicultural wedding ceremony with Telugu and Odiya rituals.',
       dressCodeDetails: 'Traditional Indian attire, sarees, lehengas, sherwanis, bright festive colors',
-      colors: 'bg-gradient-to-br from-red-100 to-red-200 text-red-900 border-red-300'
+      colors: 'bg-gradient-to-br from-red-100 to-red-200 text-red-900 border-red-300',
+      suggestedColors: ['Red', 'Gold', 'Orange'] // Added suggested colors
     },
     {
       title: 'General Guidelines',
       decorDetails: 'Nature resort setting with outdoor and indoor venues.',
       dressCodeDetails: 'Comfortable footwear recommended, light fabrics for weather, avoid all white',
-      colors: 'bg-gradient-to-br from-blue-100 to-blue-200 text-blue-900 border-blue-300'
+      colors: 'bg-gradient-to-br from-blue-100 to-blue-200 text-blue-900 border-blue-300',
+      suggestedColors: ['Any'] // Added suggested colors
     }
   ];
 
@@ -81,6 +85,17 @@ const Features = ({ visible }) => {
                     Dress Code
                   </h4>
                   <p className="text-sm opacity-90 leading-relaxed">{event.dressCodeDetails}</p>
+                  <div className="flex items-center mt-2">
+                    {event.suggestedColors && event.suggestedColors.map((color, index) => (
+                      <div key={index} className="flex items-center mr-3">
+                        <span 
+                          className="w-4 h-4 rounded-full mr-1" 
+                          style={{ backgroundColor: color.toLowerCase() }}
+                        ></span>
+                        <span className="text-xs">{color}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

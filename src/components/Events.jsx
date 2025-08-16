@@ -10,44 +10,49 @@ const Events = ({ visible }) => {
     }
   }, [visible]);
 
-  const events = [
-    {
-      title: "[TBD] Pre Wedding Party",
-      date: "24 November 2025",
-      time: "7:00 PM - 01:00 AM",
-      location: "Greenland Resort (Unconfirmed venue)",
-      locationUrl: "https://maps.app.goo.gl/X5PPXsCL44rXXB8P8",
-      address: "588, 5383, Khandai Rd, Patia, Bhubaneswar, Odisha 751021, India",
-      description: "To warm up for celebration to come, with drinks, music at Farm House."
-    },
-    {
-      title: "Mil Jhul (Meet&Greet)",
-      date: "25 November 2025",
-      time: "1:00 PM - 4:00 PM",
-      location: "Chandaka Nature Resort",
-      locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
-      address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
-      description: "Welcoming guests with stalls, games and engaging activities"
-    },
-    {
-      title: "Sangeet",
-      date: "25 November 2025",
-      time: "6:30 PM - 11:30 PM",
-      location: "Chandaka Nature Resort",
-      locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
-      address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
-      description: "A Cocktail Evening with Music & Dances from Bride & Groom Side."
-    },
-    {
-      title: "Wedding Ceremony",
-      date: "26 November 2025",
-      time: "8:30 AM - 12:30 PM",
-      location: "Chandaka Nature Resort",
-      locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
-      address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
-      description: "Bicultural wedding ceremony with both Telugu and Odiya traditonal rituals"
-    }
-  ];
+const events = [
+  {
+    title: "[Optional] Pre Wedding Party",
+    date: "24 November 2025",
+    time: "7:00 PM - 01:00 AM",
+    location: "Top Notch  (Unconfirmed venue)",
+    locationUrl: "https://maps.app.goo.gl/6UoutLM2EvLgt5Ep8",
+    address: "Bajrang Vihar, Patia, Bhubaneswar, Odisha 751024, India",
+    description: "[Optional] 🍹🎶 Kick off the wedding celebrations in style! This high-energy pub party brings guests together with lively drinks, DJ beats, and plenty of dancing. An informal way for everyone arriving in Odisha to meet, mingle, and set the festive tone for the days to come. 💃🕺",
+    meals: ["Dinner", "Drinks"]
+  },
+  {
+    title: "Mil Jhul (Meet&Greet)",
+    date: "25 November 2025",
+    time: "1:00 PM - 4:00 PM",
+    location: "Chandaka Nature Resort",
+    locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
+    address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
+    description: "A warm, fun-filled afternoon to welcome all guests! Discover playful stalls, friendly games, and laid-back introductions and conversations as families and friends come together in an outdoor carnival setting. Light-hearted moments and laughter are the themes!",
+    meals: ["Lunch", "Snacks"]
+  },
+  {
+    title: "Sangeet",
+    date: "25 November 2025",
+    time: "6:30 PM - 11:30 PM",
+    location: "Chandaka Nature Resort",
+    locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
+    address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
+    description: "An enchanting cocktail evening sparkling with music, lights, and colorful dance performances by both families. The party mood ignites with laughter, dances, and signature drinks flowing – the perfect prelude to the wedding day!",
+    meals: ["Dinner", "Cocktails"]
+  },
+  {
+    title: "Wedding Ceremony",
+    date: "26 November 2025",
+    time: "8:30 AM - 12:30 PM",
+    location: "Chandaka Nature Resort",
+    locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
+    address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
+    description: "A beautiful union celebrated with traditional Telugu and Odiya rituals. Experience the joy of vibrant mandap ceremonies, sacred mantras, and an atmosphere glowing with familial warmth and cultural richness. Festivities continue with feasting and heartfelt blessings.",
+    meals: ["Breakfast", "Lunch"]
+  }
+];
+
 
   return (
     <section id="events" className="section py-20 bg-white animate-hidden animate-item" ref={sectionRef}>
@@ -57,10 +62,10 @@ const Events = ({ visible }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/20 cursor-pointer group"
               onClick={() => {
-                const startDate = '20251124T100000Z'; // November 24, 2025 10:00 AM UTC
+                const startDate = '20251125T100000Z'; // November 25, 2025 10:00 AM UTC
                 const endDate = '20251126T180000Z';   // November 26, 2025 6:00 PM UTC
                 const title = encodeURIComponent('Susnata & Saiteja Wedding');
-                const details = encodeURIComponent('Join us for our 3-day wedding celebration at Chandaka Nature Resort, Bhubaneswar');
+                const details = encodeURIComponent('Join us for our 2-day wedding celebration at Chandaka Nature Resort, Bhubaneswar');
                 const location = encodeURIComponent('Chandaka Nature Resort, Bhubaneswar, India');
 
                 const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
@@ -73,7 +78,7 @@ const Events = ({ visible }) => {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-serif text-primary mb-3">When</h3>
-                <p className="text-lg font-medium text-gray-800 mb-1 group-hover:text-primary transition-colors duration-300">24 - 26 November 2025</p>
+                <p className="text-lg font-medium text-gray-800 mb-1 group-hover:text-primary transition-colors duration-300">25 - 26 November 2025</p>
                 <div className="mt-3 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center">
                   <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -112,7 +117,7 @@ const Events = ({ visible }) => {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-serif text-groom_blue mb-3">Duration</h3>
-                <p className="text-lg font-medium text-gray-800 mb-1">3 Days</p>
+                <p className="text-lg font-medium text-gray-800 mb-1">2 Days</p>
                 <p className="text-gray-600">of festivities</p>
               </div>
             </div>
@@ -134,6 +139,25 @@ const Events = ({ visible }) => {
                     {event.time}
                   </span>
                 </div>
+
+                {/* Meal Tags */}
+                {event.meals && event.meals.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {event.meals.map((meal, mealIndex) => (
+                      <span
+                        key={mealIndex}
+                        className={`text-xs px-3 py-1 rounded-full font-medium ${meal === 'Breakfast' ? 'bg-yellow-100 text-yellow-800' :
+                            meal === 'Lunch' ? 'bg-green-100 text-green-800' :
+                              meal === 'Dinner' ? 'bg-blue-100 text-blue-800' :
+                                meal === 'Drinks' || meal === 'Cocktails' ? 'bg-purple-100 text-purple-800' :
+                                  'bg-gray-100 text-gray-800'
+                          }`}
+                      >
+                        🍽️ {meal}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 <div className="mb-4">
                   {event.locationUrl ? (

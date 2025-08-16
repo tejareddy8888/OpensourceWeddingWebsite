@@ -12,7 +12,6 @@ const Header = () => {
       // Determine which section is currently in view
       const sections = [
         'intro',
-        'countdown',
         'events',
         'travel',
         'features',
@@ -38,11 +37,11 @@ const Header = () => {
   // Navigation items in logical order
   const navItems = [
     { id: 'intro', label: 'Home' },
-    { id: 'countdown', label: 'Countdown' },
-    { id: 'events', label: 'Event Details' },
-    { id: 'travel', label: 'Travel' },
-    { id: 'features', label: 'Things to Do' },
-    { id: 'rsvp', label: 'RSVP' }
+    { id: 'events', label: 'Event Schedule' },
+    { id: 'rsvp', label: 'RSVP' },
+    { id: 'travel', label: 'How To Reach' },
+    { id: 'features', label: 'Detailed Event Information' },
+    { id: 'travelblog', label: 'Suggested Travels' },
   ];
 
   return (

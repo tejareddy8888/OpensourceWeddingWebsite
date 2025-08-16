@@ -261,7 +261,7 @@ const RSVP = ({ visible }) => {
                 {/* Are you willing to stay at Deras Nature Camp */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-4 text-base font-medium text-gray-700">
-                    Are you willing to stay at Deras Nature Camp? <span className="text-gray-400 text-sm">(Optional)</span>
+                    Are you willing to stay at Our Provided Accomodation? <span className="text-gray-400 text-sm">(Optional)</span>
                   </label>
                   <div className="space-y-3">
                     <label className="flex items-center cursor-pointer">

@@ -10,23 +10,14 @@ const Travel = ({ visible }) => {
     }
   }, [visible]);
 
-    const accommodations_providedByUs = [
-    {
-      name: "Greenfield Resort",
-      description: "The Farm House Party Location - Join us for the pre-wedding celebration with drinks, music, and festivities",
-      address: "588, 5383, Khandai Rd, Patia, Bhubaneswar, Odisha 751021, India",
-      locationUrl: "https://maps.app.goo.gl/X5PPXsCL44rXXB8P8",
-      checkIn: "November 24, 2025",
-      checkOut: "November 25, 2025",
-      status: "Unconfirmed"
-    },
+  const accommodations_providedByUs = [
     {
       name: "Chandaka Nature Resort",
       description: "The main wedding venue - A beautiful nature resort where all the main ceremonies will take place including Mil Jhul, Sangeet, and Wedding Ceremony",
       address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
       locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
       checkIn: "November 25, 2025",
-      checkOut: "November 26, 2025",
+      checkOut: "November 27, 2025",
       status: "Booked"
     },
     {
@@ -35,7 +26,16 @@ const Travel = ({ visible }) => {
       address: "Deras Dam,Mendhasal, Bhubaneswar, Odisha 752054, India",
       locationUrl: "https://maps.google.com/?q=Deras+Nature+Camp+Bhubaneswar+Odisha",
       checkIn: "November 25, 2025",
-      checkOut: "November 26, 2025",
+      checkOut: "November 27, 2025",
+      status: "Booked"
+    },
+    {
+      name: "Svanir Wilderness Ecostay",
+      description: "Eco-friendly wilderness accommodation offering a unique nature experience with comfortable amenities. Perfect for guests who want to immerse themselves in the natural beauty of the Chandaka area.",
+      address: "Svanir Wilderness Ecostay, Near Chandaka Wildlife Sanctuary, Bhubaneswar, Odisha, India",
+      locationUrl: "https://maps.google.com/?q=Svanir+Wilderness+Ecostay+Chandaka+Bhubaneswar+Odisha",
+      checkIn: "November 25, 2025",
+      checkOut: "November 27, 2025",
       status: "Booked"
     }
   ];
@@ -71,17 +71,17 @@ const Travel = ({ visible }) => {
   ];
 
   return (
-    <section id="travel" className="section py-20 bg-secondary" ref={sectionRef}>
+    <section id="travel" className="section py-20 bg-white" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-serif text-center mb-16">How to Reach &amp; Where to Stay</h2>
 
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <h3 className="text-2xl font-serif mb-4">How to Reach</h3>
-            <div className="bg-white p-6 rounded-lg shadow-md space-y-6">
+            <div className="bg-secondary p-6 rounded-lg shadow-md space-y-6">
               <div>
                 <h4 className="text-xl font-medium mb-2">By Air</h4>
-                <p>Biju Patnaik International Airport (BBSR) - 25 km from venue. Direct flights available from major Indian cities.</p>
+                <p>Biju Patnaik International Airport (BBI) - 25 km from venue. Direct flights available from major Indian cities.</p>
               </div>
               <div>
                 <h4 className="text-xl font-medium mb-2">By Train</h4>
@@ -102,7 +102,7 @@ const Travel = ({ visible }) => {
             <h3 className="text-2xl font-serif mb-4">Accommodations Provided by Us</h3>
             <p className="text-gray-600 mb-6">These accommodations are arranged by us for our guests. Please confirm your attendance for booking arrangements.</p>
             {accommodations_providedByUs.map((acc, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md mb-6 border-l-4 border-primary">
+              <div key={index} className="bg-secondary p-6 rounded-lg shadow-md mb-6 border-l-4 border-primary">
                 <div className="flex justify-between items-start mb-3">
                   <h4 className="text-xl font-medium">{acc.name}</h4>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${acc.status === 'Booked' ? 'bg-green-100 text-green-800' :
@@ -140,7 +140,7 @@ const Travel = ({ visible }) => {
             <p className="text-gray-600">If you prefer to book your own accommodation, here are some recommended hotels.</p>
             <p className="text-red-600 mb-6">Unfortunately, there are not many hotel close by the venue (we have logistics, so no worries :P, we got you covered)</p>
             {otherAccommodation_recommendations.map((acc, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md mb-6 border-l-4 border-bride_green">
+              <div key={index} className="bg-secondary p-6 rounded-lg shadow-md mb-6 border-l-4 border-bride_green">
                 <div className="flex justify-between items-start mb-3">
                   <h4 className="text-xl font-medium">{acc.name}</h4>
                   <span className="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">

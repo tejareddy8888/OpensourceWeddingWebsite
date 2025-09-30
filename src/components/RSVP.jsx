@@ -204,7 +204,7 @@ const RSVP = ({ visible }) => {
                 {/* How many people joining? */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-4 text-base font-medium text-gray-700">
-                    How many people joining? <span className="text-gray-400 text-sm">(Optional)</span>
+                    How many people joining?
                   </label>
                   <div className="flex space-x-2 text-sm">
                     <select
@@ -223,7 +223,7 @@ const RSVP = ({ visible }) => {
                 {/* Date of Arrival */}
                 <div className="border-b border-gray-200 pb-6">
                   <label htmlFor="arrivalDate" className="block mb-3 text-base font-medium text-gray-700">
-                    Date of Arrival <span className="text-gray-400 text-sm">(Optional)</span>
+                    Date of Arrival
                   </label>
                   <div className="flex space-x-2 text-sm">
                     <input
@@ -242,7 +242,7 @@ const RSVP = ({ visible }) => {
                 {/* Time of Arrival */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-3 text-base font-medium text-gray-700">
-                    Time of Arrival  <span className="text-gray-400 text-sm">(Optional) (24 Hour Format)</span>
+                    Time of Arrival
                   </label>
                   <div className="flex items-center space-x-2">
                     <input
@@ -258,7 +258,7 @@ const RSVP = ({ visible }) => {
                 {/* Are you willing to stay at Deras Nature Camp */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-4 text-base font-medium text-gray-700">
-                    Are you willing to stay at Our Provided Accomodation? <span className="text-gray-400 text-sm">(Optional)</span>
+                    Are you willing to stay at Our Provided Accomodation?
                   </label>
                   <div className="space-y-3">
                     <label className="flex items-center cursor-pointer">
@@ -289,7 +289,7 @@ const RSVP = ({ visible }) => {
                 {/* Date of Departure */}
                 <div className="border-b border-gray-200 pb-6">
                   <label htmlFor="departureDate" className="block mb-3 text-base font-medium text-gray-700">
-                    Date of Departure <span className="text-gray-400 text-sm">(Optional)</span>
+                    Date of Departure
                   </label>
                   <div className="flex space-x-2 text-sm">
                     <input
@@ -308,7 +308,7 @@ const RSVP = ({ visible }) => {
                 {/* Time of Departure */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-3 text-base font-medium text-gray-700">
-                    Time of Departure <span className="text-gray-400 text-sm">(Optional) (24 Hour Format)</span>
+                    Time of Departure
                   </label>
                   <div className="flex items-center space-x-2">
                     <input
@@ -324,7 +324,7 @@ const RSVP = ({ visible }) => {
                 {/* Do you need transfer? */}
                 <div className="border-b border-gray-200 pb-6">
                   <label className="block mb-4 text-base font-medium text-gray-700">
-                    Do you need transfer? <span className="text-gray-400 text-sm">(Optional)</span>
+                    Do you need transfer?
                   </label>
                   <div className="space-y-3">
                     <label className="flex items-center cursor-pointer">

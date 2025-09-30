@@ -75,6 +75,11 @@ const Travel = ({ visible }) => {
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-serif text-center mb-16">How to Reach &amp; Where to Stay</h2>
 
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-8 max-w-4xl mx-auto" role="alert">
+          <strong className="font-bold">Visa Information:</strong>
+          <span className="block sm:inline"> All non-Indian nationals require a visa to enter India. It is easy to apply online at <a href="https://indianvisaonline.gov.in/" target="_blank" rel="noopener noreferrer" className="underline hover:text-red-800">Indian Visa Online</a>.</span>
+        </div>
+
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <h3 className="text-2xl font-serif mb-4">How to Reach</h3>

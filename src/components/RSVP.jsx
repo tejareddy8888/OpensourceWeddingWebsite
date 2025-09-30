@@ -5,7 +5,7 @@ const RSVP = ({ visible }) => {
   const [formData, setFormData] = useState({
     canAttend: '',
     familyName: '',
-    numberOfPeople: '',
+    numberOfPeople: '1',
     arrivalDate: '',
     arrivalTime: '',
     stayAtDerasNatureCamp: '',
@@ -112,7 +112,7 @@ const RSVP = ({ visible }) => {
       setFormData({
         canAttend: '',
         familyName: '',
-        numberOfPeople: '',
+        numberOfPeople: '1',
         arrivalDate: '',
         arrivalTime: '',
         stayAtDerasNatureCamp: '',
@@ -206,20 +206,17 @@ const RSVP = ({ visible }) => {
                   <label className="block mb-4 text-base font-medium text-gray-700">
                     How many people joining? <span className="text-gray-400 text-sm">(Optional)</span>
                   </label>
-                  <div className="flex flex-wrap gap-4 sm:gap-8 justify-center sm:justify-between">
-                    {[1, 2, 3, 4, 5].map(num => (
-                      <label key={num} className="flex flex-col items-center cursor-pointer">
-                        <span className="mb-2 text-sm text-gray-600">{num}</span>
-                        <input
-                          type="radio"
-                          name="numberOfPeople"
-                          value={num.toString()}
-                          checked={formData.numberOfPeople === num.toString()}
-                          onChange={handleChange}
-                          className="h-5 w-5 text-primary focus:ring-primary border-gray-300"
-                        />
-                      </label>
-                    ))}
+                  <div className="flex space-x-2 text-sm">
+                    <select
+                      name="numberOfPeople"
+                      value={formData.numberOfPeople}
+                      onChange={handleChange}
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    >
+                      <option value="">Select number</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
                   </div>
                 </div>
 

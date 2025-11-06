@@ -12,23 +12,14 @@ const Events = ({ visible }) => {
 
 const events = [
   {
-    title: "[Optional] Pre Wedding Party",
-    date: "24 November 2025",
-    time: "7:00 PM - 01:00 AM",
-    location: "Top Notch  (Unconfirmed venue)",
-    locationUrl: "https://maps.app.goo.gl/6UoutLM2EvLgt5Ep8",
-    address: "Bajrang Vihar, Patia, Bhubaneswar, Odisha 751024, India",
-    description: "[Optional] 🍹🎶 Kick off the wedding celebrations in style! This high-energy pub party brings guests together with lively drinks, DJ beats, and plenty of dancing. An informal way for everyone arriving in Odisha to meet, mingle, and set the festive tone for the days to come. 💃🕺",
-    meals: ["Dinner", "Drinks"]
-  },
-  {
-    title: "Mil Jhul (Meet&Greet)",
+    title: "Mil Jhul (Meet & Greet)",
     date: "25 November 2025",
     time: "1:00 PM - 4:00 PM",
     location: "Chandaka Nature Resort",
     locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
     address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
-    description: "A warm, fun-filled afternoon to welcome all guests! Discover playful stalls, friendly games, and laid-back introductions and conversations as families and friends come together in an outdoor carnival setting. Light-hearted moments and laughter are the themes!",
+    description: "A warm welcome with fun games, friendly conversations, and lots of laughter as families meet!",
+    dressCode: "Casual traditional attire — comfortable, colourful Indian wear",
     meals: ["Lunch", "Snacks"]
   },
   {
@@ -38,7 +29,8 @@ const events = [
     location: "Chandaka Nature Resort",
     locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
     address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
-    description: "An enchanting cocktail evening sparkling with music, lights, and colorful dance performances by both families. The party mood ignites with laughter, dances, and signature drinks flowing – the perfect prelude to the wedding day!",
+    description: "Time to shine! Music, dance performances, and celebration with signature cocktails flowing.",
+    dressCode: "Western or Indo-western outfits — let's have fun, music and dancing!",
     meals: ["Dinner", "Cocktails"]
   },
   {
@@ -48,7 +40,8 @@ const events = [
     location: "Chandaka Nature Resort",
     locationUrl: "https://maps.google.com/?q=Chandaka+Nature+Resort+Bhubaneswar+India",
     address: "Kantabada_Deras Dam, Barapita, Bhubaneswar, Odisha 751024, India",
-    description: "A beautiful union celebrated with traditional Telugu and Odiya rituals. Experience the joy of vibrant mandap ceremonies, sacred mantras, and an atmosphere glowing with familial warmth and cultural richness. Festivities continue with feasting and heartfelt blessings.",
+    description: "Traditional Telugu and Odiya rituals celebrating our union with sacred mantras and blessings.",
+    dressCode: "Formal traditional Indian attire — sarees, lehengas, sherwanis, kurtas",
     meals: ["Breakfast", "Lunch"]
   }
 ];
@@ -179,6 +172,15 @@ const events = [
                 </div>
 
                 <p className="text-gray-700 mb-4">{event.description}</p>
+
+                {/* Dress Code */}
+                {event.dressCode && (
+                  <div className="bg-gray-50 p-3 rounded-md mb-4">
+                    <p className="text-sm text-gray-700">
+                      <span className="font-semibold">Dress Code:</span> {event.dressCode}
+                    </p>
+                  </div>
+                )}
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
